@@ -1,4 +1,4 @@
-// include section
+// Include section
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -6,7 +6,7 @@
 
 /**
  * This program takes an input number from user and outputs its representation in binary
- * along with the amount of 0s and 1s in it.
+ * along with the amount of 0s and 1s in its binary representation.
  *
  * Purpose: Get hands-on experience in bitwise operations and practice transforming a decimal number to binary.
  * DIT633
@@ -15,17 +15,17 @@
  *
  **/
 
-// Main function declaration
+// declaration of the main function
 int main(int argc, char **argv)
 {
     // assign the input from user to a variable. Since user input comes as a string presented in array of chars,
-    // then it is assigned to an array of chars with a pointer.
+    // then it is assigned to an array of chars with a pointer to the first bit.
     char *userInput = argv[1];
     // Start of error handling
     if (argc < 2) // count of arguments is expected to be 2, 1st being the name of the program
     // and 2nd being user input as a command line argument. If amount is less than 2, then user didn't provide the number.
     {
-        // print a prompt for the user.
+        // print a prompt for the user in case there is no command line argument.
         printf("Error: No number provided. Please provide a number as a command line argument.\n");
         // terminate the program
         return 0;
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     // calculate the number of bits that will be reserved for the number
     int numSize = sizeof(numb) * 8;
     // declare a variable to act as a bool to keep track of the leading 0s that should not be displayed when printing the number
-    int firstOneFound = 0;
+    int endOfLeadingZeros = 0;
     // print placeholder for binary representation
     printf("Binary: 0b");
     // iterate through the number starting from the last digit
@@ -67,14 +67,14 @@ int main(int argc, char **argv)
         if (numb >> i & 1)
         {
             // change the variable to true, since we encountered the first one meaning there are no more leading zeros
-            firstOneFound = 1;
+            endOfLeadingZeros = 1;
             // add 1 to the bool representation of the number
             printf("1");
             // increase counter for the amount of 1s in the number
             numOfOnes++;
         }
         // in case all leading zeros are omitted and the encountered 0 is already the part of the number
-        else if (firstOneFound)
+        else if (endOfLeadingZeros)
         {
             // add 0 to the bool representation of the number
             printf("0");
