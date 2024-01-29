@@ -4,9 +4,9 @@
 #include <string.h>
 #include <time.h>
 
-int MAX_NUMBER = 100;   // defines max number of allowed guesses
+int MAX_NUMBER = 10;   // defines max number of allowed guesses
 int playGame();         // defines prototype of the helper function
-void successfulGuess(); // defines prototype of the helper function
+void gameOver(); // defines prototype of the helper function
 
 // Main function declaration
 int main(int argc, char **argv)
@@ -51,8 +51,9 @@ int playGame()
         if (userInput == randomNum)
         {
             // call helper function to handle success scenario
-            successfulGuess(guessCounter);
-            // terminate the program since if the successfulGuess control flow returned here, then user presses "n" meaning stop the game
+            printf("Congratulations! You have guessed %i times and your guess is correct!\n", guessCounter); // print success message
+            gameOver();
+            // terminate the program since if the gameOver control flow returned here, then user presses "n" meaning stop the game
             return 0;
         }
         else if (userInput < randomNum)
@@ -64,14 +65,16 @@ int playGame()
         // increase guess counter by 1
         guessCounter++;
     }
-    // terminate the program
-    return 0;
+    // user prompt if the number of guesses exceeded the limit
+    printf("The number of guesses exceeded the limit. You lost :(.\n");
+    gameOver();
+        // terminate the program
+        return 0;
 }
 
 // helper function to execute when user guessed the number
-void successfulGuess(int guessCounter)
+void gameOver()
 {
-    printf("Congratulations! You have guessed %i times and your guess is correct!\n", guessCounter); // print success message
     printf("Do you want to play again? y-Yes n-No\n");                                               // suggest to play again or end the game
     char playAgain;                                                                                  // initialize variable to contain user input if he wants to continue the game
     scanf("%s", &playAgain);                                                                         // get user input if he wants to continue

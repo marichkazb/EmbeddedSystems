@@ -28,7 +28,7 @@ int main(int argc, char** argv)
         numberOfBits = 64;
     }
 
-    for (int i = numberOfBits - 1; i>= 0; i--)
+    for (int i = numberOfBits - 1; i >= 0; i--)
     {
         int k = atoi(test) >> i;
         if (k & 1)

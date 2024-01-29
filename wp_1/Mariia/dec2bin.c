@@ -7,7 +7,7 @@
 // try casting ?
 int main(int argc, char **argv)
 {
-    int userInput = atoi(argv[1]);
+    long userInput = atoi(argv[1]);
     int bits = 0;
     while (userInput > 0)
     {
