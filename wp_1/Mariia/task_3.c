@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 int MAX_NUMBER = 100;   // defines max number of allowed guesses
 int playGame();         // defines prototype of the helper function
@@ -19,6 +20,7 @@ int main(int argc, char **argv)
 // helper function that contains the game logic
 int playGame()
 {
+    srand(time(0));
     int randomNum = 1 + (rand() % 100);             // generate random num from 1 to 100 utilizing rand() in-build function
     int userInput = 0;                              // initialize user input to 0
     int guessCounter = 0;                           // initialize counter of guesses to 0
@@ -34,8 +36,8 @@ int playGame()
             if (scanf("%d", &userInput) != 1 || userInput > 100 || userInput < 1)
             {
                 // Clear input buffer to prevent infinite loop
-                // https://www.tutorialspoint.com/clearing-input-buffer-in-c-cplusplus#:~:text=The%20function%20fflush(stdin)%20is,feof%20error%20indicator%20is%20set.
-                fflush(stdin);
+                while ((userInput = getchar()) != '\n')
+                    ;
                 // print user message to explain the mistake
                 printf("Your input is out of bound. Enter a number between 1 and 100.\n");
             }

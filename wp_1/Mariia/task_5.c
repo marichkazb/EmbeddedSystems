@@ -59,7 +59,7 @@ void count_frequency(int *tab, int *freq)
 
 void draw_histogram(int *freq)
 {
-    for (int i = 0; i < MAX; i++)
+    for (int i = 0; i < MAXNUMBER; i++)
     {
         if (freq[i] > 0)
         {
