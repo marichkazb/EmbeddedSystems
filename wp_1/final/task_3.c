@@ -4,9 +4,9 @@
 #include <string.h>
 #include <time.h>
 
-int MAX_NUMBER = 10;   // defines max number of allowed guesses
-int playGame();         // defines prototype of the helper function
-void gameOver(); // defines prototype of the helper function
+int MAX_NUMBER = 100; // defines max number of allowed guesses
+int playGame();     // defines prototype of the helper function
+void gameOver();    // defines prototype of the helper function
 
 // Main function declaration
 int main(int argc, char **argv)
@@ -68,17 +68,17 @@ int playGame()
     // user prompt if the number of guesses exceeded the limit
     printf("The number of guesses exceeded the limit. You lost :(.\n");
     gameOver();
-        // terminate the program
-        return 0;
+    // terminate the program
+    return 0;
 }
 
 // helper function to execute when user guessed the number
 void gameOver()
 {
-    printf("Do you want to play again? y-Yes n-No\n");                                               // suggest to play again or end the game
-    char playAgain;                                                                                  // initialize variable to contain user input if he wants to continue the game
-    scanf("%s", &playAgain);                                                                         // get user input if he wants to continue
-    if (strcmp(&playAgain, "n") == 0)                                                                // in case if he typed n the game will print the message and finish
+    printf("Do you want to play again? y-Yes n-No\n"); // suggest to play again or end the game
+    char playAgain;                                    // initialize variable to contain user input if he wants to continue the game
+    scanf("%s", &playAgain);                           // get user input if he wants to continue
+    if (strcmp(&playAgain, "n") == 0)                  // in case if he typed n the game will print the message and finish
     {
         // print final message of the game
         printf("Good bye!\n");

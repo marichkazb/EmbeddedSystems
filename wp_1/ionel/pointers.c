@@ -59,11 +59,11 @@ void create_random(int *tab)
 
 void count_frequency(int *tab, int *freq)
 {
-    for (int i = 0; i < MAXNUMBER; i++)
-    {
-        // Initialize the array to {0, 0, 0, ..., 0}
-        freq[i] = 0;
-    }
+    // for (int i = 0; i < MAXNUMBER; i++)
+    // {
+    //     // Initialize the array to {0, 0, 0, ..., 0}
+    //     freq[i] = 0;
+    // }
 
     for (int i = 0; i < MAX; i++)
     {
