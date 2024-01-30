@@ -3,7 +3,13 @@
 
 void swap(int *a, int *b);
 int compare(const void *a, const void *b);
-
+typedef struct
+{
+    char lname[20];
+    char fname[20];
+    char street[20];
+    int age;
+} REGTYPE;
 int main()
 {
     // swap two numbers
@@ -27,9 +33,19 @@ int main()
     {
         printf("%d ", arr[i]);
     }
+
+    REGTYPE records[3];
+    REGTYPE *postP = records;
+    fgets(postP->fname, 20, stdin);
+    postP = postP + 2;
+    fgets(postP->fname, 20, stdin);
+    for (int i = 0; i < 3; i++)
+    {
+        printf("Record %i: fname - %s lname - %s\n", i, records[i].fname, records[i].lname);
+    }
+
     return 0;
 }
-
 int compare(const void *a, const void *b)
 {
     return (*(int *)a - *(int *)b);
