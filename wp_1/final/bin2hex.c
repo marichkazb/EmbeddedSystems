@@ -1,3 +1,8 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 1
+// Exercise 4.2
+// Submission code: 098890 (provided by your TA-s)
+
 // Includes section
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +14,16 @@
 // Declare a helper function that will take the arguments and convert binary numbers to hex values
 int validateAndConvert(int argc, char **argv);
 // Declare a helper function that is responsible for converting bin to hex
-void bin2hex(long binaryNum);
+void bin2hex(char *binaryNum);
+
+/**
+ *
+ * Purpose: Learning C programming
+ * DIT633
+ *
+ * Author: Joel Celén, Ionel Pop, Mariia Zabolotnia 2024
+ *
+ **/
 // ------ Function definitions ----------
 // The main entry point for the program
 int main(int argc, char **argv)
@@ -21,24 +35,15 @@ int main(int argc, char **argv)
 }
 
 // function to convert binary to hexadecimal
-void bin2hex(long binaryNum)
+void bin2hex(char *binaryNum)
 {
-    long hexVal = 0;
-    int i = 1;
-    long remainder;
-    while (binaryNum != 0)
-    {
-        remainder = binaryNum % 10;
-        hexVal = hexVal + remainder * i;
-        i = i * 2;
-        binaryNum = binaryNum / 10;
-    }
+    unsigned long dec = strtol(binaryNum, NULL, 2);
     // print the hexadecimal number
-    printf("%lX\n", hexVal);
+    printf("%lX\n", dec);
     // terminate the program with exit code 0
     exit(0);
 }
-
+// declare helper function to validate and convert the number from binary to hexadecimal
 int validateAndConvert(int argc, char **argv)
 {
     if (argc < 2) // if two programs are run in a pipeline and there are no command line arguments
@@ -52,7 +57,7 @@ int validateAndConvert(int argc, char **argv)
             // terminate the program
             return 0;
         }
-        bin2hex(atoi(binary));
+        bin2hex(binary);
     }
     // declare variable to store pointer to the entered command line arguments
     char *userInput = argv[1];
@@ -78,7 +83,7 @@ int validateAndConvert(int argc, char **argv)
         // increase counter to continue iterating
         i++;
     }
-    bin2hex(atoi(argv[1]));
+    bin2hex(argv[1]);
     // terminate the program
     return 0;
 }

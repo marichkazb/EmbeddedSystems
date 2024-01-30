@@ -1,3 +1,8 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 1
+// Exercise 1
+// Submission code: 098890 (provided by your TA-s)
+
 // Includes section
 #include <stdio.h>
 #include <string.h>
@@ -8,9 +13,18 @@ int input;
 // Function prototype declaration
 void takeInput();
 
+/**
+ *
+ * Purpose: Learning C programming
+ * DIT633
+ *
+ * Author: Joel Celén, Ionel Pop, Mariia Zabolotnia 2024
+ *
+ **/
+
 // Main function
 int main(int argc, char **argv)
-{    
+{
     // If there are no user arguments
     if (argc == 1)
     {

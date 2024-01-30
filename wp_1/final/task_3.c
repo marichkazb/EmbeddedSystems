@@ -1,3 +1,8 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 1
+// Exercise 3
+// Submission code: 098890 (provided by your TA-s)
+
 // Includes section
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,8 +10,17 @@
 #include <time.h>
 
 int MAX_NUMBER = 100; // defines max number of allowed guesses
-int playGame();     // defines prototype of the helper function
-void gameOver();    // defines prototype of the helper function
+int playGame();       // defines prototype of the helper function
+void gameOver();      // defines prototype of the helper function
+
+/**
+ *
+ * Purpose: Learning C programming
+ * DIT633
+ *
+ * Author: Joel Celén, Ionel Pop, Mariia Zabolotnia 2024
+ *
+ **/
 
 // Main function declaration
 int main(int argc, char **argv)

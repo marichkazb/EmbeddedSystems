@@ -1,15 +1,13 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 1
+// Exercise 5
+// Submission code: 098890 (provided by your TA-s)
+
 // Include section
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
-// TODO: ask why it doesn't give me an error if freq[10] doesn't exist
-// TODO: ask if I can modify the signatures
-// TODO: ask if it's ok to remove 'n'
-
-// #define MAX 100         // Defines the maximum number of values in the table
-// #define MAXNUMBER 20    // Defines the maximum value of random numbers
 
 // ------ Function declarations ----------
 
@@ -41,7 +39,7 @@ void print_array(int *arr, int n);
  * Author: Ionel Pop, Joel Celen, Mariia Zabolotnia, 2024
  *
  **/
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     // If the provided command line arguments are not enough
     if (argc < 3)
@@ -77,7 +75,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    int table[maxValues]; // Initialize an array of maxValues integers
+    int table[maxValues];     // Initialize an array of maxValues integers
     int frequency[maxNumber]; // Initialize an array of maxNumber integers
 
     // Call the function create_random

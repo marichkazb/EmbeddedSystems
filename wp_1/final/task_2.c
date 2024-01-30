@@ -1,11 +1,16 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 1
+// Exercise 2
+// Submission code: 098890 (provided by your TA-s)
+
 // Include section
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 // Define section
-#define MAX_STR_LENGTH 100      // Define maximum length of the string to be encrypted
-#define NUMBER_OF_LETTERS 26    // Define the number of possible letters to be encrypted (In this case, the standard english alphabet)
+#define MAX_STR_LENGTH 100   // Define maximum length of the string to be encrypted
+#define NUMBER_OF_LETTERS 26 // Define the number of possible letters to be encrypted (In this case, the standard english alphabet)
 
 /**
  * Helper function that checks if a character is UPPERCASE or lowercase
@@ -162,7 +167,7 @@ int main(int argc, char **argv)
 
             /**
              * Else if the current character in the input is a space.
-             * 
+             *
              * This allows us to encrypt sentences instead of only words
              */
             else if (userInput[i] == ' ')
