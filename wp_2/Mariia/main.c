@@ -61,7 +61,7 @@ int main(int argc, char **argv)
     if ((week > week5 || week < week1) && (day > Sun || day < Mon))
     {
         // print general invalid statement
-        printf("invalid \n");
+        printf("invalid\n");
         // terminate the program
         return 0;
     }
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
         return 0;
     }
     // check the validity of the day input
-    if (day > Sun || day < Mon)
+    else if (day > Sun || day < Mon)
     {
         // print error message
         printf("invalid day\n");
@@ -133,6 +133,6 @@ void clearBuffer()
     // declare helper variable
     int userInput;
     // Clear input buffer to prevent infinite loop
-    while ((userInput = getchar()) != '\n')
+    while ((userInput = getchar()) != '\n' && (userInput != EOF))
         ; // empty body because we intend to just iterate on input characters
 }
