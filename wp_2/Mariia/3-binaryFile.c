@@ -15,12 +15,12 @@ typedef struct
 
 void printMenu();
 
-void write_new_file(PERSON *person);  // 1
-void append_file(PERSON *person);     // 2 appends a new person to the file
+void write_new_file(PERSON *person);  // 1 create a new file with a test record
+void append_file(PERSON *person);     // 2 append a new person to the file
 void search_by_firstName(char *name); // 3 search for the person
-void printAllInFile();                // 4 prints all records
-PERSON input_record(void);            // Helper - Reads a person’s record.
-void searchForPerson();
+void printAllInFile();                // 4 print all records
+PERSON input_record(void);            // Helper - Read a user input
+void clearBuffer(void);               // Helper - clear buffer
 
 int userInput;
 int main(void)
@@ -40,6 +40,7 @@ void printMenu()
     printf("4 Print out all in the file.\n");
     printf("5 Exit the program.\n");
     scanf("%d", &userInput);
+    clearBuffer();
 
     switch (userInput)
     {
@@ -64,6 +65,7 @@ void printMenu()
         char name[20];
         printf("Input the name to find: \n");
         scanf("%20s", name);
+        clearBuffer();
         search_by_firstName(name);
         break;
     }
@@ -99,12 +101,15 @@ PERSON input_record()
     PERSON person;
     printf("Input name: \n");
     scanf("%20s", person.firstName);
+    clearBuffer();
     printf("Input last name: \n");
 
     scanf("%20s", person.lastName);
+    clearBuffer();
     printf("Input personal number: \n");
 
     scanf("%13s", person.persNum);
+    clearBuffer();
     return person;
 }
 
@@ -181,8 +186,12 @@ void printAllInFile()
     fclose(fptr);
 }
 
-// void clearBuffer()
-// {
-//     while ((ch = getchar()) != '\n')
-//         ;
-// }
+// helper function to clear buffer
+void clearBuffer()
+{
+    // declare helper variable
+    int userInput;
+    // Clear input buffer to prevent infinite loop
+    while ((userInput = getchar()) != '\n' && (userInput != EOF))
+        ; // empty body because we intend to just iterate on input characters
+}
