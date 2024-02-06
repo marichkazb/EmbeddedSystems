@@ -1,3 +1,4 @@
 # Ignore executables
 *.out
 *.exe
+*.DS_Store
