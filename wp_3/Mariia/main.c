@@ -4,26 +4,34 @@
 #include <ctype.h>
 
 void clearBuffer();
-void inputMatrix(int matrix[], int num, int numEl);
+int *inputMatrix(int num, int numEl);
 
 int main(void)
 {
-    int row, col, matrix1[16], matrix2[16], sum[16];
+    int row, col, sum[16];
     printf("Input the size ");
     scanf("%d %d", &row, &col);
+    if (row > 4 || col > 4)
+    {
+        printf("Error: invalid matrix size. max is 4x4\n");
+        exit(1);
+    }
     clearBuffer();
 
     int numEl = (row * col);
 
-    inputMatrix(matrix1, 1, numEl);
-    clearBuffer();
-    inputMatrix(matrix2, 2, numEl);
+    int *matrix1 = inputMatrix(1, numEl);
+    int *matrix2 = inputMatrix(2, numEl);
 
     for (int i = 0; i < numEl; i++)
     {
-        sum[i] = matrix1[i] + matrix2[i];
-        // matrix1[0] <<= sizeof(int) * 8;
-        // matrix2[0] <<= sizeof(int) * 8;
+        int temp;
+        temp = *(matrix1 + i) + *(matrix2 + i);
+        *(sum + i) = temp;
+    }
+    for (int i = 0; i < numEl; i++)
+    {
+        printf("i: %d, matrixEl: %d\n", i, sum[i]);
     }
     printf("The sum is: \n");
     int j = col;
@@ -39,42 +47,37 @@ int main(void)
     return 0;
 }
 
-void inputMatrix(int matrix[], int num, int numEl)
+int *inputMatrix(int num, int numEl)
 {
+    int *matrix = malloc(16 * sizeof(int));
     printf("Input elements of the matrix %d: ", num);
+    unsigned int input;
+    int i;
     char c;
-    int i = 0;
-    while ((c = getchar()) != '\n' && c != EOF)
+    for (i = 0; i <= 16; i++)
     {
-        if (i > numEl)
+        if (scanf("%d", &input) != 1)
         {
-            printf("Error: Invalid number of arguments\n");
+            printf("invalid character\n");
             exit(0);
-        };
-        if (!isdigit(c))
-        {
-            if (isspace(c))
-            {
-                continue;
-            }
-            else
-            {
-
-                printf("Error: Invalid input, please provide only digits\n");
-                exit(0);
-            }
         }
-        matrix[i] = c;
-        printf("%c", matrix[i]);
-        i++;
-        // ungetc(c, stdin);
+        if (((c = getchar()) == '\n') || c == EOF)
+        {
+            matrix[i] = input;
+            break;
+        }
+        else
+        {
+            ungetc(c, stdin);
+        }
+        matrix[i] = input;
     }
-    printf("matrix is\n");
-    for (int i = 0; i < numEl; i++)
+    if (i != numEl - 1)
     {
-        printf("numEl: %d, matrix: %d", numEl, matrix[i]);
-        printf("\n");
+        printf("invalid number of arguments\n");
+        exit(0);
     }
+    return matrix;
 }
 
 // helper function to clear buffer
