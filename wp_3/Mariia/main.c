@@ -49,6 +49,14 @@ int main(void)
         *(sum + i) = temp;
     }
 
+    // handle case when matrix is 1x1 so just one number, in case if both matrices are full, then not correct
+    if (numEl == 1 && matrix1 != NULL && matrix2 != NULL)
+    {
+        // print the error message
+        printf("invalid, matrix should contain one character\n");
+        // exit the program
+        exit(0);
+    }
     // print the message
     printf("The sum is: \n");
     // initialize helper variable
