@@ -1,7 +1,7 @@
 // (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
 // Work package 2
 // Exercise 1
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 355721 (provided by your TA-s)
 
 // include libraries
 #include <stdio.h>
