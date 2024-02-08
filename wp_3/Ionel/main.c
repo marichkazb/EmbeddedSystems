@@ -5,6 +5,9 @@
 
 // Prototype function declarations
 
+#define MIN_DIMENSION 2 // Minimum dimension of a matrix
+#define MAX_DIMENSION 4 // Maximum dimension of a matrix
+
 /**
  * Prompts the user to input the size of the matrix, and
  * checks if it's within the valid range (2x2 to 4x4)
@@ -68,6 +71,18 @@ void printMatrix(int *M, int *size);
  *  returns 1 if it has only integers, -1 otherwise.
 */
 int isInteger(char *string);
+
+
+/**
+ * Helper function that finds a newLine in a given string
+ * 
+ * Input:
+ *  input: String to check for new lines
+ * 
+ * Output: 1 if it finds a new line, 0 if it doesn't
+ *  
+*/
+int findNewLine(char *input);
 
 /**
  * Helper function to clean the buffer
@@ -175,7 +190,14 @@ int getSize(int *matrixDimension)
     // printf("Input the size: ");
     // Get the user input and store it in userInput
     fgets(userInput, sizeof(userInput), stdin);
-    // cleanBuffer();
+
+    // If there is no new line in userInput, it means that the buffer
+    // was not big enough to store all the characters
+    if (findNewLine(userInput) == 0)
+    {
+        // Clean the buffer
+        cleanBuffer();
+    }
 
     int counter = 0; // Counter to keep track of the number of elements in userInput
 
@@ -202,8 +224,8 @@ int getSize(int *matrixDimension)
         // Cast the current string to integer to get the first dimension
         int dimension = atoi(currentDimension);
 
-        // If the dimension is less than 2 or bigger than 4
-        if (dimension < 2 || dimension > 4)
+        // If the dimension is less than MIN_DIMENSION or bigger than MAX_DIMENSION
+        if (dimension < MIN_DIMENSION || dimension > MAX_DIMENSION)
         {
             // The dimension is invalid and we return -1
             return -1;
@@ -241,6 +263,14 @@ int getMatrix(int *matrix, int numberOfElements)
 
     // Get the user input
     fgets(userInput, sizeof(userInput), stdin);
+
+    // If there is no new line in userInput, it means that the buffer
+    // was not big enough to store all the characters
+    if (findNewLine(userInput) == 0)
+    {
+        // Clean the buffer
+        cleanBuffer();
+    }
 
     /**
      * When using fgets, the new line character '\n' also becomes part of the input.
@@ -366,7 +396,28 @@ int isInteger(char *string)
 
 void cleanBuffer()
 {
-    char c;
+    char c; // Temp variable to get the extra characters
+    // Call getchar until we encounter a newLine or EOF
     while ((c = getchar()) != '\n' && c != EOF)
         ;
+}
+
+int findNewLine(char *input)
+{
+    // Iterate over the input string until we encounter a null terminator
+    while (*input != '\0')
+    {
+        // If we encounter a newline
+        if (*input == '\n')
+        {
+            // Return 1
+            return 1;
+        }
+
+        // Move the pointer to the next item
+        input++;
+    }
+
+    // If we don't find a newLine, return 0
+    return 0;
 }
