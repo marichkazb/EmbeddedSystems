@@ -1,3 +1,8 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 2
+// Exercise 1
+// Submission code: 355721 (provided by your TA-s)
+
 // Include section
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +14,14 @@ typedef unsigned char BYTE;
 void invalidNumber(); // If integer is outside of allowed range,prints error message and exits the program
 
 // Main function
+/**
+ *
+ * Purpose: Work package 2: Code
+ * DIT633
+ *
+ * Author: Joel Celén, Ionel Pop, Mariia Zabolotnia 2024
+ *
+ **/
 int main(int argc, char const *argv[])
 {
     // If the amount of arguments are correct

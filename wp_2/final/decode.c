@@ -1,3 +1,8 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 2
+// Exercise 1
+// Submission code: 355721 (provided by your TA-s)
+
 // Includes section
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +16,14 @@ int hexToInt(char ascii);            // Function that turns a hex character into
 void clearBuffer();                  // Function to clear buffer after reading values
 
 // Main function
+/**
+ *
+ * Purpose: Work package 2: Decode
+ * DIT633
+ *
+ * Author: Joel Celén, Ionel Pop, Mariia Zabolotnia 2024
+ *
+ **/
 int main(int argc, char const *argv[])
 {
     // If there are no given arguments except the main argument

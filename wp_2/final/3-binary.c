@@ -1,3 +1,8 @@
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 2
+// Exercise 1
+// Submission code: 355721 (provided by your TA-s)
+
 // Include section
 #include <stdlib.h>
 #include <stdio.h>
@@ -33,6 +38,14 @@ void append_file(PERSON *inrecord);    // appends a new person to the file
 void clearBuffer();                    // Clears the buffer of any unwanted characters
 
 // Main function
+/**
+ *
+ * Purpose: Work package 2: Binary files
+ * DIT633
+ *
+ * Author: Joel Celén, Ionel Pop, Mariia Zabolotnia 2024
+ *
+ **/
 int main(void)
 {
     PERSON ppost;               // Temporary person
