@@ -27,6 +27,8 @@ void setup()
 void loop()
 {
     // convert analog value of temperature pin to the integer value and get celcius value
+    // The formulas were taken from the youtube tutorial
+    // reference: https://www.youtube.com/watch?v=cESOwZs_oOE&t=572s&ab_channel=Thetips4you
     int temp = map(((analogRead(TEMP_PIN) - 20) * 3.04), 0, 1023, -40, 125);
     // convert analog value of light pin to integer value using formula
     int light = map(analogRead(LIGHT_PIN), 0, 1023, 0, 100);
