@@ -1,7 +1,7 @@
-// (C) Joel Celén, group: 8__ (2024)
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
 // Work package 3
-// Exercise 5
-// Submission code: XXXXXX (provided by your TA-s)
+// Exercise 2
+// Submission code: xxxxxx (provided by your TA-s)
 
 /** ----- Instructions -----
  * Write a program that creates an array of integers, array[MAX],
