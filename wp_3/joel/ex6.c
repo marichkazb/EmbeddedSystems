@@ -39,6 +39,7 @@ int main(int argc, char const *argv[])
     // Declare input and output strings
     char input[MAX];  // Input goes into this
     char output[MAX]; // Copied string goes into this
+    char strcpyOutput[MAX];
 
     // Declare and initialize pointers
     char *pInStart = &input[0];     // Pointer to the first element of the input
@@ -52,9 +53,12 @@ int main(int argc, char const *argv[])
 
     // Copy input string to output string
     copyString(pInStart, pInEnd, pOutStart);
+    strcpy(strcpyOutput, input);
 
     // Print result of output string
-    printf("Input was: %s\n", output);
+    printf("\nString using a): %s", strcpyOutput);
+    printf("\nString using b): %s\n", output);
+    
 
     // Return 0 for successful execution
     return 0;
