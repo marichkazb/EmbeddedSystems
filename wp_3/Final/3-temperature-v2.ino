@@ -17,7 +17,7 @@ void setup()
 
 void loop()
 {
-    // read alalog value to int
+    // read analog value to int
     int temp = analogRead(T_PIN);
     // Convert analog reading to voltage
     double voltage = temp * (5.0 / 1023.0);
