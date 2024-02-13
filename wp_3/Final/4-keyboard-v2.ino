@@ -1,3 +1,8 @@
+// (C) Joel Celén, group: 8__ (2024)
+// Work package 3
+// Exercise 6
+// Submission code: XXXXXX (provided by your TA-s)
+
 // Include section
 #include <Keypad.h> // Keypad library
 
