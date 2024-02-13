@@ -1,7 +1,7 @@
-// (C) Joel Celén, group: 8__ (2024)
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
 // Work package 3
 // Exercise 6
-// Submission code: XXXXXX (provided by your TA-s)
+// Submission code: 908233 (provided by your TA-s)
 
 /** ----- Instructions -----
  * Write a program that reads in a string with a maximum of 20 characters from the keyboard

@@ -1,7 +1,7 @@
 // (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
 // Work package 3
-// Exercise 2
-// Submission code: xxxxxx (provided by your TA-s)
+// Exercise 3
+// Submission code: 908233 (provided by your TA-s)
 
 #define WAIT 1000
 

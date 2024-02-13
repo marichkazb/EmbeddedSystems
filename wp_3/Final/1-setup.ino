@@ -4,10 +4,11 @@
 // Submission code: 908233 (provided by your TA-s)
 
 // declare pin variable
-int led1 = 12;
-int led2 = 8;
-int btnPin = 2;
-int state;
+int led1 = 12;  // Set pin 12 as the output pin for LED 1
+int led2 = 8;   // Set pin 8 as the output pin for LED 2
+int btnPin = 2; // Set pin 2 as the input pin for the Button
+int state;      // Variable keep track of the state of the Button
+
 // setup initial block
 void setup()
 {
@@ -28,10 +29,12 @@ void loop()
 {
     // set led1 to ON mode
     digitalWrite(led1, HIGH);
-    delay(1000); // Wait for 1000 millisecond(s)
+    // Wait for 1000 millisecond(s)
+    delay(1000);
     // set pin1 to OFF mode to make it blink every 1 second
     digitalWrite(led1, LOW);
-    delay(1000); // Wait for 1000 millisecond(s)
+    // Wait for 1000 millisecond(s)
+    delay(1000);
 }
 
 // interrupt function
