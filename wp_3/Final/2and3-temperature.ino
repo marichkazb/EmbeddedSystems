@@ -1,7 +1,7 @@
 // (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
 // Work package 3
-// Exercise 2
-// Submission code: xxxxxx (provided by your TA-s)
+// Exercise 2 and 3
+// Submission code: 908233 (provided by your TA-s)
 
 // Declare variables for storing Pin values
 int RED = 13;    // pin number for red LED
@@ -12,7 +12,7 @@ int TEMP_PIN = A0;
 int LIGHT_PIN = A1;
 
 // declare variable to store delay time in seconds
-int delaySec = 10;
+int delaySec = 1;
 
 // main function for setup before execution
 void setup()
@@ -26,10 +26,12 @@ void setup()
 // function that will be executed repetatively
 void loop()
 {
-    // The formulas were taken from the youtube tutorial
-    // reference: https://www.youtube.com/watch?v=cESOwZs_oOE&t=572s&ab_channel=Thetips4you
-    // convert analog value of temperature pin to the integer value and get celcius value
-    int temp = map(((analogRead(TEMP_PIN) - 20) * 3.04), 0, 1023, -40, 125);
+    // read analog value to int
+    int temperature = analogRead(TEMP_PIN);
+    // Convert analog reading to voltage
+    double voltage = temperature * (5.0 / 1023.0);
+    // Calculate temperature using provided formula
+    double temp = (voltage - 0.5) * 100;
     // convert analog value of light pin to integer value using formula
     int light = map(analogRead(LIGHT_PIN), 0, 1023, 0, 100);
 
@@ -41,6 +43,7 @@ void loop()
     Serial.print("Light: ");
     // print light value
     Serial.println(light);
+    Serial.print(voltage);
 
     // start the logic block that corresponds to the dependencies
     // specified in the task description
