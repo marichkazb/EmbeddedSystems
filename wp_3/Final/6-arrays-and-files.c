@@ -1,7 +1,7 @@
-// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// (C) Joel Celén, group: 8__ (2024)
 // Work package 3
-// Exercise 2
-// Submission code: xxxxxx (provided by your TA-s)
+// Exercise 6
+// Submission code: XXXXXX (provided by your TA-s)
 
 /** ----- Instructions -----
  * Write a program that reads in a string with a maximum of 20 characters from the keyboard
@@ -39,6 +39,7 @@ int main(int argc, char const *argv[])
     // Declare input and output strings
     char input[MAX];  // Input goes into this
     char output[MAX]; // Copied string goes into this
+    char strcpyOutput[MAX]; // Copied string using strcpy
 
     // Declare and initialize pointers
     char *pInStart = &input[0];     // Pointer to the first element of the input
@@ -52,9 +53,13 @@ int main(int argc, char const *argv[])
 
     // Copy input string to output string
     copyString(pInStart, pInEnd, pOutStart);
+    // Copy input string using standard built in function
+    strcpy(strcpyOutput, input);
 
-    // Print result of output string
-    printf("Input was: %s\n", output);
+    // Print result of output string and the output from strcpy
+    printf("\nString using a): %s", strcpyOutput);
+    printf("\nString using b): %s\n", output);
+    
 
     // Return 0 for successful execution
     return 0;

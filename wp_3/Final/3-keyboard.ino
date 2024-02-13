@@ -3,7 +3,7 @@
 // Exercise 2
 // Submission code: xxxxxx (provided by your TA-s)
 
-#define WAIT 100
+#define WAIT 1000
 
 /**
  * Initialize a 2D array that maps each combination of

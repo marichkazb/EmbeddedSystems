@@ -6,7 +6,7 @@
 // Include section
 #include <Keypad.h> // Keypad library
 
-#define WAIT 100
+#define WAIT 1000
 
 /**
  * Initialize a 2D array that maps each combination of
@@ -77,6 +77,7 @@ void loop()
     {
         // Set canPress to 0 so the user can't press any key until it's reset
         canPress = 0;
+        startTime = millis();
         // Print the key
         Serial.println(cKey);
     }
