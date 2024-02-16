@@ -92,7 +92,7 @@ void bubble_sort(int number, int *tab)
 void selection_sort(int number, int tab[])
 {
     // for every item in the array, execute the following
-    for (int i = 0; i < number - 1; i++)
+    for (int i = 0; i < number; i++)
     {
         // initialize minimum as the first element of the array
         int min = i;
