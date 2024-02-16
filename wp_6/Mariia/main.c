@@ -14,11 +14,11 @@ void printArray(char *arr[MAX]);
 int main(int argc, char *argv[])
 {
     char *arr[MAX];
-    char buffer[MAX_LENGTH];
     for (int i = 0; i < MAX; i++)
     {
+        char buffer[MAX_LENGTH + 5];
         printf("String %d: ", i + 1);
-        fgets(buffer, MAX_LENGTH, stdin);
+        fgets(buffer, sizeof(buffer), stdin);
         arr[i] = malloc(strlen(buffer) + 1);
         strcpy(arr[i], buffer);
 
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     printArray(arr);
 
     char *element = find_remove_str(arr);
-    printf("\Shortest string removed: %s\n", element);
+    printf("\nShortest string removed: %s\n", element);
 
     printf("\nArray after removal:\n");
     printArray(arr);
