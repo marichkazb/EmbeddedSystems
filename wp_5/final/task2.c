@@ -1,7 +1,7 @@
 // (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
 // Work package 5
 // Exercise 2
-// Submission code:  (provided by your TA-s)
+// Submission code: 80126744 (provided by your TA-s)
 
 // Reference: our own work at wp_4
 /**
@@ -94,11 +94,13 @@ void setup()
 // Function to run code repeatedly
 void loop()
 {
+    // Reference: the formula was taken as a result of research of group ?, we discussed it and reached a conclusion that is fits for reading the info from our sensor
     // Read the voltage in the temperature sensor pin
-    double voltage = ((analogRead(TEMP_SENSOR)) * 5.0 / 1023.0) * 1000;
-
-    // Calculate the temperature given by the equation
-    temperature = (voltage - 500) / 10.0;
+    int voltage = analogRead(TEMP_SENSOR);
+    // Calculate thermometer resistance by comparing it to the modules onboard 10K-ohm resistor
+    float resistance = 10000 * (1023.0 / (float)voltage - 1.0);
+    // Calculate temperature given by the equation
+    temperature = (1.0 / (0.001129148 + (0.000234125 * log(resistance)) + 0.0000000876741 * log(resistance) * log(resistance) * log(resistance))) - 273.15;
 
     // If the interrupt has determined that we should display the temperature
     if (displayTemperature == 1)
