@@ -52,6 +52,15 @@ int isDigit(char *input);
  */
 int validateInput(char **argv, int *outputArray);
 
+/**
+ * This program expects 5 bits to be encoded for an elevator controller.
+ *
+ * Purpose: Bonus question work package 5
+ * DIT633
+ *
+ * Author: Ionel Pop, 2024
+ *
+ **/
 // Main program
 int main(int argc, char **argv)
 {
