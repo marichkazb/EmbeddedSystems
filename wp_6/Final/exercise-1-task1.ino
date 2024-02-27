@@ -3,10 +3,10 @@
 // Exercise 1.1
 // Submission code: 073648 (provided by your TA-s)
 
-#define ENCA 2
-#define ENCB 3
-#define PWM1 5
-#define PWM2 6
+#define ENCA 2 // define pin for encoder channel A of the motor
+#define ENCB 3 // define pin for encoder channel B of the motor
+#define PWM1 5 // define pin for power motor 1
+#define PWM2 6 // define pin for power motor 2
 
 int pos = 0; // Position in ticks
 int deg = 0; // Position in degrees
@@ -25,7 +25,7 @@ int b = 0; // b-encoder signal
 // function to initialize initial data and pins
 void setup()
 {
-  Serial.begin(9600);          // start serial monitor t obe able to print information
+  Serial.begin(9600);          // start serial monitor to be able to print information
   pinMode(ENCA, INPUT_PULLUP); // initialize ENCA pin of type INPUT_PULLUP
   pinMode(ENCB, INPUT_PULLUP); // initialize ENCB pin of type INPUT_PULLUP
   pinMode(PWM1, OUTPUT);       // initialize PWM1 pin of type OUTPUT
@@ -100,7 +100,7 @@ void loop()
     // print value of speed
     Serial.println(speed);
 
-    // We successfuly read the input
+    // We successfully read the input
     if (directionReady != 0 && speedReady != 0)
     {
       // handle edge cases - if speed is more than 255, then fallback to 255
@@ -121,7 +121,7 @@ void loop()
       {
         // start the motor PWM1 with the speed
         analogWrite(PWM1, speed);
-        // and PWM2 with 0
+        // and write PWM2 to 0
         analogWrite(PWM2, 0);
       }
       else

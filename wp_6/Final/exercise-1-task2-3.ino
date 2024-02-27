@@ -3,10 +3,10 @@
 // Exercise 1.2 and 1.3
 // Submission code: 073648 (provided by your TA-s)
 
-#define ENCA 2
-#define ENCB 3
-#define PWM1 5
-#define PWM2 6
+#define ENCA 2 // define pin for encoder channel A of the motor
+#define ENCB 3 // define pin for encoder channel B of the motor
+#define PWM1 5 // define pin for power motor 1
+#define PWM2 6 // define pin for power motor 2
 
 int pos = 0; // Position in ticks
 int deg = 0; // Position in degrees
@@ -25,7 +25,7 @@ int b = 0; // b-encoder signal
 // function to initialize initial data and pins
 void setup()
 {
-  Serial.begin(9600);          // start serial monitor t obe able to print information
+  Serial.begin(9600);          // start serial monitor to be able to print information
   pinMode(ENCA, INPUT_PULLUP); // initialize ENCA pin of type INPUT_PULLUP
   pinMode(ENCB, INPUT_PULLUP); // initialize ENCB pin of type INPUT_PULLUP
   pinMode(PWM1, OUTPUT);       // initialize PWM1 pin of type OUTPUT
@@ -56,89 +56,109 @@ void loop()
   Serial.println("Motors stopped before reading input");
 
   // Check if motor rotated all the way around, and reset counter
-  if (pos > 2299)
+  if (pos > 2299) // 2299 is the edge position of the motor
   {
+    // reset degrees to ensure it stays within the range 0-359
     deg = deg - 359;
+    // reset pos to ensure it stays within the range 0-2299
     pos = pos - 2299;
   }
-  if (pos < 0)
+  if (pos < 0) // 0 is the edge position of the motor
   {
+    // reset degrees to ensure it stays within the range 0-359
     deg = 359 + deg;
+    // reset pos to ensure it stays within the range 0-2299
     pos = 2299 + pos;
   }
 
+  // map given values to calculate the value of deg
   deg = map(pos, 0, 2299, 0, 359);
 
+  // section for debugging the program
+
   // Print current position
-  Serial.print("The current position is: ");
-  Serial.print(deg);
-  Serial.print("\n");
+  Serial.print("The current position is: "); // print user message
+  Serial.print(deg);                         // print degree value
+  Serial.print("\n");                        // print new line
 
   // Get input
   degtarget = getInput();
 
-  Serial.print("Degree target is: ");
-  Serial.print(degtarget);
-  Serial.print("\n");
+  Serial.print("Degree target is: "); // print user message
+  Serial.print(degtarget);            // print degtarget message
+  Serial.print("\n");                 // print new line
 
   // Calculate initial error
   e = degtarget - deg;
-  Serial.print("The initial error is: ");
-  Serial.print(e);
-  Serial.print("\n");
+  Serial.print("The initial error is: "); // print user message
+  Serial.print(e);                        // print error
+  Serial.print("\n");                     // print new line
 
+  // validation
+  // in case error is not equal to 5
   while (e > 5 || e < -5)
   {
-    if (pos > 2299)
+    if (pos > 2299) // if counter exceeded the boundaries, reset it
     {
+      // reset degrees to ensure it stays within the range 0-359
       deg = deg - 359;
+      // reset pos to ensure it stays within the range 0-2299
       pos = pos - 2299;
     }
-    if (pos < 0)
+    if (pos < 0) // if counter exceeded the boundaries, reset it
     {
+      // reset degrees to ensure it stays within the range 0-359
       deg = 359 + deg;
+      // reset pos to ensure it stays within the range 0-2299
       pos = 2299 + pos;
     }
+    // map given values to calculate the value of deg
     deg = map(pos, 0, 2299, 0, 359);
 
-    Serial.print("Current position: ");
-    Serial.print(pos);
-    Serial.print("\tCurrent degrees: ");
-    Serial.print(deg);
+    Serial.print("Current position: ");  // print user message
+    Serial.print(pos);                   // print position
+    Serial.print("\tCurrent degrees: "); // print user message
+    Serial.print(deg);                   // print current degrees value
 
-    e = degtarget - deg;
+    e = degtarget - deg; // print error message
 
-    Serial.print("\tError: ");
-    Serial.print(e);
-    Serial.println("");
+    Serial.print("\tError: "); // print error message
+    Serial.print(e);           // print error value
+    Serial.println("");        // print space for better formatting
 
-    speed = getAction(e);
+    speed = getAction(e); // calculate and save value of the motor speed
 
-    Serial.print("\tSpeed: ");
-    Serial.print(speed);
-    Serial.println("");
+    Serial.print("\tSpeed: "); // print user message
+    Serial.print(speed);       // print speed value
+    Serial.println("");        // print space for better formatting
 
     // Send speed signal to motor
     // Rotating clockwise
-    if (speed >= 0)
+    if (speed >= 0) // validation check
     {
+      // if speed exceeds the range
       if (speed < 100)
       {
         // motor does not react with too low inputs
         speed = 100;
       }
+      // set PWM2 to speed value
       analogWrite(PWM2, speed);
+      // set PWM1 to 10
       analogWrite(PWM1, 10);
     }
     // Rotating counter-clockwise
     else
     {
+      // validation check
       if (-speed < 100)
       {
         // motor does not react with too low inputs
         speed = -100;
       }
+      // write motor speed
       analogWrite(PWM1, -speed);
+      // write PWM2 value
       analogWrite(PWM2, 10);
     }
 
