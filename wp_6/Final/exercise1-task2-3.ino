@@ -1,57 +1,68 @@
-// WP 6 Exercise 1 Template DIT 632
+// (C) __Mariia Zabolotnia, Joel Celén, Ionel Pop, group: 8__ (2024)
+// Work package 6
+// Exercise 1.2 and 1.3
+// Submission code: 073648 (provided by your TA-s)
+
 #define ENCA 2
 #define ENCB 3
 #define PWM1 5
 #define PWM2 6
 
-int pos = 0;  // Position in ticks
-int deg = 0;  // Position in degrees
+int pos = 0; // Position in ticks
+int deg = 0; // Position in degrees
 
-int degtarget = 0;  // Target position in degrees
+int degtarget = 0; // Target position in degrees
 
-int speed = 0;  // Desired motor speed
+int speed = 0; // Desired motor speed
 
-int kp = 3;     // Proportional constant for controller (tuning parameter)
-int u_out = 0;  // output of controller
+int kp = 3;    // Proportional constant for controller (tuning parameter)
+int u_out = 0; // output of controller
 
-int e = 0;  // error
-int a = 0;  // a-encoder signal
-int b = 0;  // b-encoder signal
+int e = 0; // error
+int a = 0; // a-encoder signal
+int b = 0; // b-encoder signal
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(ENCA, INPUT_PULLUP);
-  pinMode(ENCB, INPUT_PULLUP);
-  pinMode(PWM1, OUTPUT);
-  pinMode(PWM2, OUTPUT);
+// function to initialize initial data and pins
+void setup()
+{
+  Serial.begin(9600);          // start serial monitor t obe able to print information
+  pinMode(ENCA, INPUT_PULLUP); // initialize ENCA pin of type INPUT_PULLUP
+  pinMode(ENCB, INPUT_PULLUP); // initialize ENCB pin of type INPUT_PULLUP
+  pinMode(PWM1, OUTPUT);       // initialize PWM1 pin of type OUTPUT
+  pinMode(PWM2, OUTPUT);       // initialize PWM2 pin of type OUTPUT
 
+  // create attachInterrupt for pin ENCA that will trigger function ISR_readEncoder every time signal on Rising value
   attachInterrupt(digitalPinToInterrupt(ENCA), ISR_readEncoder, RISING);
 
   // Start the motor, just a tiny little bit because otherwise TinkerCad dies....
   analogWrite(PWM2, 10);
-  delay(1000);  // TinkerCad bug
+  // add delay in milliseconds
+  delay(1000); // TinkerCad bug
+  // initialize motor movement
   analogWrite(PWM1, 10);
-
+  // print user message
   Serial.println("Motors initialized");
 }
 
-void loop() {
+// function of the code that will be repetitively executed
+void loop()
+{
   // Stop the motor, but not to zero because then TinkerCad dies....
-  //analogWrite(PWM1, 10);
-  //delay(1000);  // TinkerCad...bug
-  //analogWrite(PWM2, 10);
   analogWrite(PWM1, 10);
-  //delay(1000);  // TinkerCad...bug
+  // write PWM2 as 10
   analogWrite(PWM2, 10);
 
+  // print user message
   Serial.println("Motors stopped before reading input");
 
   // Check if motor rotated all the way around, and reset counter
-  if (pos > 2299) {
+  if (pos > 2299)
+  {
     deg = deg - 359;
     pos = pos - 2299;
   }
-  if (pos < 0) {
+  if (pos < 0)
+  {
     deg = 359 + deg;
     pos = 2299 + pos;
   }
@@ -76,12 +87,15 @@ void loop() {
   Serial.print(e);
   Serial.print("\n");
 
-  while (e > 5 || e < -5) {
-    if (pos > 2299) {
+  while (e > 5 || e < -5)
+  {
+    if (pos > 2299)
+    {
       deg = deg - 359;
       pos = pos - 2299;
     }
-    if (pos < 0) {
+    if (pos < 0)
+    {
       deg = 359 + deg;
       pos = 2299 + pos;
     }
@@ -106,8 +120,10 @@ void loop() {
 
     // Send speed signal to motor
     // Rotating clockwise
-    if (speed >= 0) {
-      if (speed < 100) {
+    if (speed >= 0)
+    {
+      if (speed < 100)
+      {
         // motor does not react with too low inputs
         speed = 100;
       }
@@ -115,8 +131,10 @@ void loop() {
       analogWrite(PWM1, 10);
     }
     // Rotating counter-clockwise
-    else {
-      if (-speed < 100) {
+    else
+    {
+      if (-speed < 100)
+      {
         // motor does not react with too low inputs
         speed = -100;
       }
@@ -126,92 +144,75 @@ void loop() {
 
     // Calculate new error
     e = degtarget - deg;
-
-    // analogWrite(PWM1, 10);
-    // analogWrite(PWM2, 200);
   }
-
-  //Serial.println("Outside error");
-  // Stop the motor, but not to zero because then TinkerCad dies....
-  //analogWrite(PWM1, 10);
-  //delay(1000);  // TinkerCad...bug
-  //analogWrite(PWM2, 10);
-
-  // // Calculate initial error
-  // e = degtarget - deg;
-
-  // Serial.print("Error is: ");
-  // Serial.print(e);
-  // Serial.print("\n");
-
-  // // Loop until error is zero
-  // while (e)
-  // {
-
-  //     // Map current position into degrees
-  //     deg = map(pos, 0, 2299, 0, 359);
-
-  //     // Get necessary speed signal
-  //     speed = getAction(e);
-
-  //     // Send speed signal to motor
-  //     // Rotating clockwise
-  //     if (speed >= 0)
-  //     {
-  //         if (speed < 100) // motor does not react with too low inputs
-  //             speed = 100;
-  //         analogWrite(PWM2, 0);
-  //         analogWrite(PWM1, speed);
-  //     }
-
-  //     // Rotating counter-clockwise
-  //     else
-  //     {
-  //         if (-speed < 100) // motor does not react with too low inputs
-  //             speed = -100;
-  //         analogWrite(PWM1, 0);
-  //         analogWrite(PWM2, -speed);
-  //     }
-
-  //     // Calculate new error
-  //     e = degtarget - deg;
-  // }
 }
 
-int getInput() {
-
+// function to get user input
+int getInput()
+{
+  // initialise flag to determine if it's ready
   int ready = 0;
+  // create buffer array with value 3
   char buf[3];
+  // initialize input to -1
   int input = -1;
 
+  // print user message
   Serial.print("Please enter the desired position: \n");
 
-  while (!ready) {
+  // repeat the body until input is valid
+  while (!ready)
+  {
+    // save input from buffer to ready
     ready = Serial.readBytes(buf, 3);
+    // convert buffer values to int input
     input = atoi(&buf[0]);
   }
 
+  // return input value
   return input;
 }
 
-int getAction(int error) {
+// function to get the
+int getAction(int error)
+{
 
+  // calculate out value as kp *error value
   u_out = kp * error;
 
-  if (u_out > 254) {  // u_out cannot be more than 255...
+  // u_out cannot be more than 255...
+  if (u_out > 254)
+  {
+    // then we return 255
     return 255;
-  } else if (u_out < -254) {  //...or less than -254
+  }
+  //...or less than -254
+  else if (u_out < -254)
+  {
+    // then we return -255
     return -255;
-  } else
+  }
+  else
+    // otherwise return default value of u_out
     return u_out;
 }
 
-void ISR_readEncoder() {
+// function that is executed on interrupts
+void ISR_readEncoder()
+{
+  // read the pin ENCB and store value to b
   int b = digitalRead(ENCB);
 
-  if (b > 0) {
+  // if the value is positive
+  if (b > 0)
+  {
+    // increase the position
     pos++;
-  } else {
+  }
+  // otherwise if it's negative
+  else
+  {
+    // decrease the position
     pos--;
   }
 }
